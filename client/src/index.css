@@ -1,1 +1,23 @@
 @import "tailwindcss";
+
+html{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: #FFFFFF;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background: #1B1B1B;
+    color: white;
+}
+
+.font-google-sans {
+    font-family: 'Google Sans Code', sans-serif;
+}
+
+.font-mplus {
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+}

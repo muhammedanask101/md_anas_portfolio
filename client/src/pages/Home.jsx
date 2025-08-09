@@ -1,7 +1,8 @@
-export default function Home(){
+import HomeSection from "../components/HomeSection"
+
+const Home = () => {
     return(
-    <> 
-        <h1 class="text-3xl font-bold underline">Home</h1>
-        <p className="decoration-black">Hi</p> 
-    </>
+        <HomeSection />
 )}
+
+export default Home;

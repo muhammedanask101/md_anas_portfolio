@@ -1,24 +1,30 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { lazy, Suspense } from "react"
 import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import Projects from './pages/ProjectList';
-import About from './pages/AboutMe';
-import Contact from './pages/AskMe';
+import Footer from './components/Footer';
+const Home = lazy(() => import('./pages/Home'));
+const Projects = lazy(() => import('./pages/ProjectList'));
+const Contact = lazy(() => import('./pages/AskMe'));
 import './index.css'
+import FallbackLoading from './components/FallbackLoading';
 
 function App() {
+
   return (
-    <Router>
-      <Navbar />
-      <div className="p-4">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
+
+      <div className='flex flex-col min-h-screen'>
+        <Navbar />
+          <main className='flex-grow p-8'>
+            <Suspense fallback={<FallbackLoading />}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/projects" element={<Projects />} />
+                <Route path="/contact" element={<Contact />} />
+              </Routes>
+            </Suspense>
+          </main>
+        <Footer />
       </div>
-    </Router>
   );
 }
 
