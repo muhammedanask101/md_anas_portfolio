@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 const Home = lazy(() => import('./pages/Home'));
 const Projects = lazy(() => import('./pages/ProjectList'));
 const Contact = lazy(() => import('./pages/AskMe'));
+const AdminLogin = lazy(() => import('./pages/AdminLogin'));
 import './index.css'
 import FallbackLoading from './components/FallbackLoading';
 
@@ -20,6 +21,8 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/projects" element={<Projects />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/adminlogin" element={<AdminLogin />} />
+                <Route path="/admin" element={<Admin />} />
               </Routes>
             </Suspense>
           </main>

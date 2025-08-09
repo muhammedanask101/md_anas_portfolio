@@ -1,3 +1,9 @@
-export default function ProjectList(){
-    return <h1>Projects</h1>
+import ProjectArray from '../components/ProjectArray';
+
+const ProjectList = () => {
+    return (
+        <ProjectArray />
+    )
 }
+
+export default ProjectList;
