@@ -1,0 +1,2 @@
+{projects.length > 0 && (<div> {projects.map( project => <Project key={project._id} project={project}/>)} </div>)}
+projectarray

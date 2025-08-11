@@ -6,6 +6,7 @@ const Home = lazy(() => import('./pages/Home'));
 const Projects = lazy(() => import('./pages/ProjectList'));
 const Contact = lazy(() => import('./pages/AskMe'));
 const AdminLogin = lazy(() => import('./pages/AdminLogin'));
+const Admin = lazy(() => import('./pages/Admin'));
 import './index.css'
 import FallbackLoading from './components/FallbackLoading';
 

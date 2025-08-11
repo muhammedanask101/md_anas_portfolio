@@ -6,18 +6,18 @@ import { toast } from 'react-toastify'
 import { login, reset } from '../slices/authSlice'
 import FallbackLoading from "./FallbackLoading"
 
-const Login = () => {
+const AdminSignIn = () => {
     const [formData, setFormData] = useState({ email: '', password: ''})
     const { email, password } = formData
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const { user, isLoading, isError, isSuccess, message } = useSelector(state => state.auth)
+    const { admin, isLoading, isError, isSuccess, message } = useSelector(state => state.auth)
 
     useEffect(() => {
         if (isError) toast.error(message)
         if (isSuccess || user) navigate('/admin')
         dispatch(reset())
-     }, [user, isError, isSuccess, message, navigate, dispatch])
+     }, [admin, isError, isSuccess, message, navigate, dispatch])
 
     const onChange = e => {
         setFormData(prevState => ({
@@ -57,4 +57,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default AdminSignIn;
