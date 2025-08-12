@@ -15,7 +15,7 @@ const AdminSignIn = () => {
 
     useEffect(() => {
         if (isError) toast.error(message)
-        if (isSuccess || user) navigate('/admin')
+        if (isSuccess || admin) navigate('/admin')
         dispatch(reset())
      }, [admin, isError, isSuccess, message, navigate, dispatch])
 
@@ -26,10 +26,16 @@ const AdminSignIn = () => {
         }))
     }
 
-    const onSubmit = e => {
-        e.preventDefault()
+    const onSubmit = (e) => {
+        e.preventDefault();
         const adminData = { email, password }
-        dispatch(login(adminData))
+        dispatch(login(adminData)).unwrap().then(
+            () => {
+                navigate("/admin");
+            }
+        ).catch(err => {
+            console.error(err);
+        })
 }
 
     return (

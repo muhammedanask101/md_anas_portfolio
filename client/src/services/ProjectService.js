@@ -7,6 +7,7 @@ const createProject = async (projectData, token) => {
             Authorization: `Bearer ${token}`
         }
     }
+    
     const response = await axios.post(API_URL, projectData, config);
     return response.data;
 }

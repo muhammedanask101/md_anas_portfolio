@@ -1,4 +1,7 @@
 import ProjectForm from "../components/projectForm";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 export default function Admin() {
     const navigate = useNavigate();
@@ -13,7 +16,7 @@ export default function Admin() {
             <section className='heading'>
                 <h1>Welcome {admin && admin.name}</h1>
                 <div style={{ display: 'flex', justifyContent: 'center'}}>
-                    <button classNmae='btn' onClick={() => navigate('/projects')}>Check Projects</button>    
+                    <button className='btn' onClick={() => navigate('/projects')}>Check Projects</button>    
                 </div>
             </section>
             <ProjectForm />

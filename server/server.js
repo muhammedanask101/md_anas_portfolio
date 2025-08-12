@@ -10,9 +10,10 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/projects', require('./routes/projectRoutes'));
-app.use('./api/admin', require('./routes/adminRoutes'));
+app.use('/api/admin', require('./routes/adminRoutes'));
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

@@ -4,6 +4,6 @@ const { loginAdmin, getCurrentAdmin } = require('../controllers/adminController'
 const { protect } = require('../middlewares/authMiddleware');
 
 router.post('/login', loginAdmin);
-router.get('/currentadmin', getCurrentAdmin);
+router.get('/currentadmin', protect, getCurrentAdmin);
 
 module.exports = router;
