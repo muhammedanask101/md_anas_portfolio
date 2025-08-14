@@ -16,7 +16,7 @@ function App() {
 
       <div className='flex flex-col min-h-screen'>
         <Navbar />
-          <main className='flex-grow p-8'>
+          <main className='flex-grow p-4'>
             <Suspense fallback={<FallbackLoading />}>
               <Routes>
                 <Route path="/" element={<Home />} />
