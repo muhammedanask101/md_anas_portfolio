@@ -21,7 +21,7 @@ const ProjectArray = () => {
     return(
         isLoading ? <FallbackLoading /> : (
             <>
-                <section className="flex">
+                <section className="grid grid-cols-1 justify-items-center md:grid-cols-2 xl:grid-cols-4 gap-8 p-4">
                     {Array.isArray(projects) && projects.length > 0 ? 
                     (projects.map(project => <Project key={project._id} project={project} />)) : (
                         <p>No projects to display yet.</p>
