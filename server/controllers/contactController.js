@@ -1,5 +1,6 @@
 const asyncHandler = require('express-async-handler');
 const Contact = require('../models/contactModel');
+const { sendMail } =  "../utils/mailer.js";
 
 const getContacts = asyncHandler(async (req, res) => {
     const contacts = await Contact.find();
@@ -28,5 +29,6 @@ const deleteContact = asyncHandler(async (req, res) => {
 
     res.status(200).json({ id: req.params.id });
 })
+
 
 module.exports = { getContacts, postContact, deleteContact };

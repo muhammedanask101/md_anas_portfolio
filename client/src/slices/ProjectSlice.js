@@ -44,6 +44,19 @@ export const deleteProject = createAsyncThunk('projects/delete', async (id, thun
     }
 })
 
+export const updateProject = createAsyncThunk('projects/update', async ({ id, projectData }, thunkAPI) => {
+        try {
+            const token = thunkAPI.getState().auth.admin.token;
+            return await projectService.updateProject(id, projectData, token);
+        } catch (error) {
+            const message = (error.response && error.response.data && error.response.data.message)
+            || error.message
+            || error.toString();
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+);
+
 export const projectSlice = createSlice({
     name: 'project',
     initialState,
@@ -72,10 +85,15 @@ export const projectSlice = createSlice({
             state.isSuccess = true;
             state.projects = state.projects.filter(project => project._id !== action.payload.id);
         })
-        .addMatcher(isPending(createProject, getProjects, deleteProject), (state) => {
+        .addCase(updateProject.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.projects = state.projects.map(project => project._id === action.payload._id ? action.payload : project);
+        })
+        .addMatcher(isPending(createProject, getProjects, deleteProject, updateProject), (state) => {
             state.isLoading = true;
         })
-        .addMatcher(isRejected(createProject, getProjects, deleteProject), (state, action) => {
+        .addMatcher(isRejected(createProject, getProjects, deleteProject, updateProject), (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;

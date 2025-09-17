@@ -1,9 +1,22 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { Menu, X } from "lucide-react";
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { logout, reset } from '../slices/authSlice';
 
 const Navbar = () => {
- const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { admin } = useSelector(state => state.auth);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    dispatch(reset());
+    navigate("/adminlogin");
+  };
 
   return (
     <nav className="bg-black text-amber-100 p-3 md:p-6 shadow-md/80 shadow-blue-300">
@@ -16,6 +29,8 @@ const Navbar = () => {
           <Link to="/" className="hover:text-cyan-50">Home</Link>
           <Link to="/projects" className="hover:text-cyan-50">Projects</Link>
           <Link to="/contact" className="hover:text-cyan-50">Contact</Link>
+          {admin && location.pathname.startsWith("/admin") && 
+          ( <button onClick={handleLogout} className='hover:text-red-500 transition'>Logout</button> )}
         </div>
 
         <div className="md:hidden">
@@ -30,6 +45,8 @@ const Navbar = () => {
           <Link to="/" className="hover:text-cyan-50" onClick={() => setIsOpen(false)}>Home</Link>
           <Link to="/projects" className="hover:text-cyan-50" onClick={() => setIsOpen(false)}>Projects</Link>
           <Link to="/contact" className="hover:text-cyan-50" onClick={() => setIsOpen(false)}>Contact</Link>
+          {admin && location.pathname.startsWith("/admin") && 
+          ( <button onClick={handleLogout} className='text-left hover:text-red-500 transition'>Logout</button> )}
         </div>
       )}
     </nav>

@@ -7,6 +7,7 @@ const Projects = lazy(() => import('./pages/ProjectList'));
 const Contact = lazy(() => import('./pages/AskMe'));
 const AdminLogin = lazy(() => import('./pages/AdminLogin'));
 const Admin = lazy(() => import('./pages/Admin'));
+const EditProject = lazy(() => import('./pages/EditProject'));
 import './index.css'
 import FallbackLoading from './components/FallbackLoading';
 
@@ -24,6 +25,7 @@ function App() {
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/adminlogin" element={<AdminLogin />} />
                 <Route path="/admin" element={<Admin />} />
+                <Route path="/admin/projects/:id/edit" element={<EditProject />} />
               </Routes>
             </Suspense>
           </main>
