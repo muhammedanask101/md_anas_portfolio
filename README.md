@@ -3,8 +3,6 @@
 A **personal portfolio website** built by **Md Anas** to showcase projects, skills, and experience as a full-stack web developer.  
 This repository contains both **frontend (client)** and **backend (server)** code.  
 
-🌐 **Live Demo:** [md-anas-portfolio.vercel.app](https://md-anas-portfolio.vercel.app)
-
 ---
 
 ## ✨ Features
