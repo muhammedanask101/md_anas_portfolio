@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from "react"
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -21,7 +21,6 @@ function App() {
             <Suspense fallback={<FallbackLoading />}>
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/projects" element={<Projects />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/adminlogin" element={<AdminLogin />} />
                 <Route path="/admin" element={<Admin />} />
