@@ -3,16 +3,13 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const connectDB = require('./configs/db');
 require('dotenv').config();
-const PORT = process.env.PORT || 5000;
 
-connectDB();
+const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(cors({
-  origin: ['http://localhost:5173'],
+  origin: true,
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
 app.use(express.json());
@@ -25,6 +22,16 @@ app.use('/api/projects', require('./routes/projectRoutes'));
 app.use('/api/admin', require('./routes/adminRoutes'));
 app.use('/api/contact', require('./routes/contactRoutes'));
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+const startServer = async () => {
+  try {
+    await connectDB();
+    app.listen(PORT, "0.0.0.0", () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+  } catch (err) {
+    console.error("Server failed to start:", err);
+    process.exit(1);
+  }
+};
+
+startServer();
